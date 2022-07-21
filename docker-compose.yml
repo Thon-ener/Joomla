@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+    www:
+        build: .
+        ports:
+            - "8001:80"
+        volumes:
+            - ./joomla25:/var/www/html/joomla25
+            - ./www:/var/www/html
+        links:
+            - db
+        networks:
+            - default
+    db:
+        image: mysql:5
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: myDb
+            MYSQL_USER: user
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: test
+        volumes:
+            - ./data:/var/lib/mysql
+        networks:
+            - default
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - db:db
+        ports:
+            - 8000:80
+        environment:
+            MYSQL_USER: user
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: test
