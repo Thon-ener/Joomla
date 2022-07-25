@@ -1,6 +1,7 @@
 version: "3.8"
 services:
     www:
+        #tty: true
         build: .
         ports:
             - "8001:80"
@@ -11,6 +12,7 @@ services:
             - db
         networks:
             - default
+        
     db:
         image: mysql:5
         ports:

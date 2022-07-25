@@ -1,5 +1,10 @@
-FROM php:7.1.2-apache
-RUN docker-php-ext-install mysqli
+FROM php:5.3.29-apache
+RUN apt-get update && apt-get install -y --force-yes php5-mysql
+RUN service apache2 start
+#CMD service apache2 start
+#ENTRYPOINT ["/bin/bash"]
+#CMD ["/usr/sbin/apache2","-D","FOREGROUND"]
+#EXPOSE 80
 #RUN mkdir joomla25
 #WORKDIR /var/www/html/joomla25
 #RUN apt-get update && apt-get install wget -y
