@@ -1,5 +1,7 @@
 FROM php:5.3.29-apache
-RUN apt-get update && apt-get install -y --force-yes php5-mysql
+RUN apt-get update && apt-get install -y --force-yes php5-mysql 
+#&& apt-get clean && rm -fr /var/lib/apt/lists/*
+RUN apt-get -y --force-yes -o Dpkg::Options::="--force-confnew" install libapache2-mod-php5
 RUN service apache2 start
 #CMD service apache2 start
 #ENTRYPOINT ["/bin/bash"]
